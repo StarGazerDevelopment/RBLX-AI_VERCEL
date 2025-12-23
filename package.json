@@ -10,9 +10,10 @@
     "proxy",
     "chat"
   ],
-  "author": "Your Name",
+  "author": "Stargazer Studios",
   "license": "MIT",
   "dependencies": {
     "groq-sdk": "^0.7.0"
   }
 }
+

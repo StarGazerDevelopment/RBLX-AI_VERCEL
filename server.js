@@ -1,18 +1,11 @@
-const express = require('express');
-const cors = require('cors');
 const Groq = require('groq-sdk');
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-// Initialize Groq client
 const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+  apiKey: process.env.GROQ_API_KEY,
 });
 
-app.get('/ai', async (req, res) => {
-    try {
+module.exports = async (req, res) => {
+  try {
         const message = req.query.msg;
         const playerName = req.query.player || 'Unknown';
         
@@ -140,24 +133,12 @@ Examples:
         
         const aiResponse = completion.choices[0].message.content;
         console.log(`Player: ${playerName}, Message: ${message}, AI Response: ${aiResponse}`);
-        res.json({ response: aiResponse });
-        
+         return res.json({ response: aiResponse });
+
     } catch (error) {
         console.error('Error:', error);
-        res.json({ response: `Sorry, I had an error: ${error.message}` });
+        return res.status(500).json({
+            response: `Sorry, I had an error: ${error.message}`
+        });
     }
-});
-
-app.get('/health', (req, res) => {
-    res.json({ status: 'healthy', service: 'roblox-ai-proxy' });
-});
-
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Health check available at: http://localhost:${PORT}/health`);
-});
-
-
-
-
+};

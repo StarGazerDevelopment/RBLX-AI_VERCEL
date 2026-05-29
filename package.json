@@ -2,17 +2,27 @@
   "name": "roblox-ai-proxy",
   "version": "1.0.0",
   "private": true,
-  "description": "AI proxy server for Roblox using Groq API",
+  "description": "Vercel-hosted NoobAI backend for Roblox using Groq and Upstash Redis",
   "keywords": [
     "roblox",
     "ai",
     "groq",
     "proxy",
-    "chat"
+    "chat",
+    "vercel",
+    "upstash",
+    "redis"
   ],
   "author": "Stargazer Studios",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node scripts/check.js"
+  },
   "dependencies": {
+    "@upstash/redis": "^1.35.3",
     "groq-sdk": "^0.7.0"
   }
 }
